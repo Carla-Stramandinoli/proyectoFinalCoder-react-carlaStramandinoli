@@ -9,32 +9,29 @@ import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import Modal from '@mui/material/Modal';
 
+//rfc
 const pages = ['Productos', 'Contacto'];
-const settings = ['Logout'];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
-    const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     const handleOpenNavMenu = (event) => {
         setAnchorElNav(event.currentTarget);
-    };
-    const handleOpenUserMenu = (event) => {
-        setAnchorElUser(event.currentTarget);
     };
 
     const handleCloseNavMenu = () => {
         setAnchorElNav(null);
     };
 
-    const handleCloseUserMenu = () => {
-        setAnchorElUser(null);
-    };
-
     return (
         <AppBar position="static">
-            <Container maxWidth="xl">
+            <Container maxWidth=" xl">
                 <Toolbar disableGutters>
                     <Typography
                         variant="h6"
@@ -113,41 +110,26 @@ function ResponsiveAppBar() {
                         ))}
                     </Box>
 
-                    <Box sx={{ flexGrow: 0.2, fontFamily: 'monospace', fontSize: 25}}> Ingresar como:
+                    <Box sx={{ flexGrow: 0.1, fontFamily: 'monospace', fontSize: 25 }}> Ingresar como:
                     </Box>
                     <Box>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
-                                Usuario
-                            </IconButton>
-                        </Tooltip>
-                        <hr />
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 2 }}>
-                                Administrador
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu} >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
+                        <IconButton onClick={handleOpen} sx={{ p: 1 }}>
+                            Usuario
+                        </IconButton>
+                        <Modal
+                            open={open}
+                            onClose={handleClose}
+                            aria-labelledby="modal-modal-title"
+                            aria-describedby="modal-modal-description" >
+                            <Box>
+                                <Typography id="modal-modal-title" variant="h6" component="h2">
+                                    ACA VA UN FORMULARIO PARA INGRESAR/LOGUEARSE COMO USUARIO
+                                </Typography>
+                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                                    FORMULARIO.
+                                </Typography>
+                            </Box>
+                        </Modal>
                     </Box>
                 </Toolbar>
             </Container>

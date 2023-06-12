@@ -7,12 +7,12 @@ import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
-import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import Modal from '@mui/material/Modal';
+import CartWidget from "./cartWidget";
 
 //rfc
-const pages = ['Productos', 'Contacto'];
+const pages = ['Productos', 'Contacto',];
 
 function ResponsiveAppBar() {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -47,7 +47,7 @@ function ResponsiveAppBar() {
                             color: 'inherit',
                             textDecoration: 'none',
                         }} >
-                        App
+                        Ikki-Naguis
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
@@ -108,8 +108,9 @@ function ResponsiveAppBar() {
                                 {page}
                             </Button>
                         ))}
-                    </Box>
+                        <CartWidget productos={5}/>
 
+                    </Box>
                     <Box sx={{ flexGrow: 0.1, fontFamily: 'monospace', fontSize: 25 }}> Ingresar como:
                     </Box>
                     <Box>

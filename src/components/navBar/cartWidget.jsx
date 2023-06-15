@@ -1,11 +1,13 @@
 import React from 'react'
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
+import  { IconButton}  from '@mui/material'
 
-function cartWidget({productos}) {
+
+function cartWidget({ productos }) {
   return (
-      <button style={{backgroundColor: 'inherit'}}>
+    <IconButton style={{ backgroundColor: 'inherit' }}>
       <ShoppingCartIcon /> {productos}
-      </button>
+    </IconButton>
   )
 }
 

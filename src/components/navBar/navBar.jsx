@@ -9,7 +9,6 @@ import Modal from '@mui/material/Modal';
 import CartWidget from "./cartWidget";
 
 //rfc
-const pages = ['Productos', 'Contacto',];
 
 function ResponsiveAppBar() {
 

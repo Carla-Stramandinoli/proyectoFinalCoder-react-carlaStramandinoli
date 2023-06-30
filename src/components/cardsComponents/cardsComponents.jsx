@@ -23,7 +23,7 @@ function CardsComponents({ name, imageURL, description, quantity, price }) {
                     {description || ''}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Precio: {price}
+                    Precio: ${price}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     Cantidad por kg:{quantity}

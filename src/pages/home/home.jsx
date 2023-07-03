@@ -1,16 +1,30 @@
 import React from 'react'
+import ProdContainer from '../prodContainer/prodContainer'
+import { useNavigate, useParams } from 'react-router-dom';
+import { getProducts } from '../../dataProducts/data';
 
-import TabsComponents from '../../components/tabsComponents/TabsComponents';
+const categoryProd = [{id: 'all', title: 'Productos'}, {id: 'food', title: 'Alimentos'}, {id: 'toys', title: 'Juegos y accesorios'}, {id: 'feeders', title: 'Comederos'} ]
 
-function home() {
+function Home() {
+  const { itemId } = useParams();
+  const navigate = useNavigate()
 
+  React.useEffect(() => {
+    if(!categoryProd.some(prod => prod.id === itemId)){
+      navigate('/')
+    }
+  }, [categoryProd, navigate])
+
+  React.useEffect(()=> {
+    getProducts("alimentomascotas")
+  })
 
   return (
-    <div>
 
-      <TabsComponents />
+    <div>
+      <ProdContainer current={itemId} products={categoryProd}/>
     </div>
   )
 }
 
-export default home;
+export default Home;

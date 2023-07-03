@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box } from '@mui/system'
 import CardsComponents from '../../components/cardsComponents/cardsComponents'
-import { getFood } from './food'
+import { getProducts } from '../../dataProducts/data'
 import { Typography } from '@mui/material';
 
  function FoodComponents() {
@@ -10,7 +10,7 @@ import { Typography } from '@mui/material';
 
   React.useEffect(() => {
     setLoading(true);
-    getFood()
+    getProducts()
     .then((resp) =>{
       setItems(resp);
     })

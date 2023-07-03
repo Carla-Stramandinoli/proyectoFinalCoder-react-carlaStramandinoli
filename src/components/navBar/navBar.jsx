@@ -7,8 +7,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Modal from '@mui/material/Modal';
 import CartWidget from "./cartWidget";
-
-//rfc
+import { Link } from "react-router-dom";
 
 function ResponsiveAppBar() {
 
@@ -38,7 +37,9 @@ function ResponsiveAppBar() {
                     </Typography>
  
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+                        <Link to={'/cart'}>
                         <CartWidget productos={5} />
+                        </Link>
                     </Box>
                     <Box sx={{ flexGrow: 0.1, fontFamily: 'monospace', fontSize: 25 }}> Ingresar como:
                     </Box>

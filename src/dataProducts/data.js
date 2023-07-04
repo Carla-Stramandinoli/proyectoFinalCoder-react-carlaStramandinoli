@@ -18,3 +18,6 @@ export const getProducts = (search) => {
         return arrayVacio;
     })
 }
+
+
+export const getProductDetail(){}

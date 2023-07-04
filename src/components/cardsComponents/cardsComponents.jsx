@@ -5,6 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from 'react-router-dom';
 
 function CardsComponents({ name, imageURL, description, quantity, price }) {
     return (
@@ -17,7 +18,9 @@ function CardsComponents({ name, imageURL, description, quantity, price }) {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    {name}
+                    <Link to={'/details/:id'}>
+                    {data.title}
+                    </Link>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                     {description || ''}

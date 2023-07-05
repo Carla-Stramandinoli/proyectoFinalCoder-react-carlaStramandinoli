@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/Carla-Stramandinoli/proyectoFinalCoder-react-carlaStramandinoli/static/css/main.b243812b.css",
-    "main.js": "/Carla-Stramandinoli/proyectoFinalCoder-react-carlaStramandinoli/static/js/main.da607e6a.js",
-    "static/js/787.6f0a6189.chunk.js": "/Carla-Stramandinoli/proyectoFinalCoder-react-carlaStramandinoli/static/js/787.6f0a6189.chunk.js",
-    "index.html": "/Carla-Stramandinoli/proyectoFinalCoder-react-carlaStramandinoli/index.html",
-    "main.b243812b.css.map": "/Carla-Stramandinoli/proyectoFinalCoder-react-carlaStramandinoli/static/css/main.b243812b.css.map",
-    "main.da607e6a.js.map": "/Carla-Stramandinoli/proyectoFinalCoder-react-carlaStramandinoli/static/js/main.da607e6a.js.map",
-    "787.6f0a6189.chunk.js.map": "/Carla-Stramandinoli/proyectoFinalCoder-react-carlaStramandinoli/static/js/787.6f0a6189.chunk.js.map"
+    "main.css": "/proyectoFinalCoder-react-carlaStramandinoli/static/css/main.b243812b.css",
+    "main.js": "/proyectoFinalCoder-react-carlaStramandinoli/static/js/main.d68b0a32.js",
+    "static/js/787.6f0a6189.chunk.js": "/proyectoFinalCoder-react-carlaStramandinoli/static/js/787.6f0a6189.chunk.js",
+    "index.html": "/proyectoFinalCoder-react-carlaStramandinoli/index.html",
+    "main.b243812b.css.map": "/proyectoFinalCoder-react-carlaStramandinoli/static/css/main.b243812b.css.map",
+    "main.d68b0a32.js.map": "/proyectoFinalCoder-react-carlaStramandinoli/static/js/main.d68b0a32.js.map",
+    "787.6f0a6189.chunk.js.map": "/proyectoFinalCoder-react-carlaStramandinoli/static/js/787.6f0a6189.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b243812b.css",
-    "static/js/main.da607e6a.js"
+    "static/js/main.d68b0a32.js"
   ]
 }

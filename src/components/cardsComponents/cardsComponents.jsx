@@ -18,7 +18,7 @@ function CardsComponents({ data }) {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    <Link to={'/details/:id'}>
+                    <Link to={'/details/' + data.id}>
                     {data.title}
                     </Link>
                 </Typography>

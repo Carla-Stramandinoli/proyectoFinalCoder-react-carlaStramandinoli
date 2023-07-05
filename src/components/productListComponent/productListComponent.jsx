@@ -17,7 +17,6 @@ const productListStyle = {
     display:'flex',
     flexDirection: 'row',
     justifyContent: 'center',
-  
     flexWrap: 'wrap',
     gap: '20px'
 }

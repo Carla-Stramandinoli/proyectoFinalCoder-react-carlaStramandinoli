@@ -3,23 +3,37 @@ import { useParams } from 'react-router-dom'
 import { getProductDetail } from '../../dataProducts/data'
 import DetailsComponents from '../../components/detailsComponent/detailsComponent'
 
-function DetailsContainer() {
+function DetailsContainer({ image, title, price }) {
   const [data, setData] = React.useState()
   const { id } = useParams();
 
   React.useEffect(() => {
     getProductDetail(id)
-      .then((res) => res.json()) 
-      .then((res) => setData(res))
+      .then((res) => {
+        let prod = {
+          id: res.data.id,
+          title: res.data.title,
+          image: res.data.thumbnail,
+          price: res.data.price
+        }
+        setData(prod)
+      })
   }, [id])
-  console.log(data)
+  console.log(data);
 
   return (
-    <div>
-      <DetailsComponents data={data}/>
+    <div style={detailsStyle}>
+      <DetailsComponents data={data} />
     </div>
   )
 }
 
 
 export default DetailsContainer;
+
+const detailsStyle = {
+  display: 'flex',
+  justifyContent: 'center',
+  alignContent: 'center',
+  padding: 60,
+}

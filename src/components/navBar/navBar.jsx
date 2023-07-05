@@ -16,7 +16,7 @@ function ResponsiveAppBar() {
     const handleClose = () => setOpen(false);
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={{backgroundColor: '#456990'}}>
             <Container maxWidth=" xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -30,7 +30,7 @@ function ResponsiveAppBar() {
                             fontFamily: 'monospace',
                             fontSize: 40,
                             letterSpacing: '.2rem',
-                            color: 'inherit',
+                            color: 'black',
                             textDecoration: 'none',
                         }} >
                         Ikki-Naguis
@@ -41,10 +41,10 @@ function ResponsiveAppBar() {
                         <CartWidget productos={5} />
                         </Link>
                     </Box>
-                    <Box sx={{ flexGrow: 0.1, fontFamily: 'monospace', fontSize: 25 }}> Ingresar como:
+                    <Box sx={{ flexGrow: 0.1, color: 'black', fontFamily: 'monospace', fontSize: 25 }}> Ingresar como:
                     </Box>
                     <Box>
-                        <IconButton onClick={handleOpen} sx={{ p: 1 }}>
+                        <IconButton onClick={handleOpen} sx={{ color: 'white' }}>
                             Usuario
                         </IconButton>
                         <Modal

@@ -43,14 +43,13 @@ function Home() {
           let arrayProds = resp.data.results;
           for (let i = 0; i < arrayProds.length; i++){
               let record = {
-                id: i, 
+                id: arrayProds[i].id, 
                 title: arrayProds[i].title,
                 price: arrayProds[i].price,
                 image: arrayProds[i].thumbnail,
               };
               arrayVacio.push(record);
           }
-          console.log(arrayVacio);
           setItems(arrayVacio)
       })
     },[itemId])

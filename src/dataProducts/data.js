@@ -14,6 +14,5 @@ export const getProductDetail = (id) => {
         method: "GET",
         url: `https://api.mercadolibre.com/items/${id}`
     })
-    
     return request;
 }

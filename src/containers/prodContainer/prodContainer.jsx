@@ -16,9 +16,8 @@ function ProdContainer({ current, products }) {
             <Box>
                 <Tabs value={current} onChange={handleChange} aria-label="basic tabs example">
                     {products.map((prod, index) => {
-                        return <Tab key={index} label={prod.title} value={prod.id} />
+                        return <Tab key={prod.id + index} label={prod.title} value={prod.id} />
                     })
-
                     }
                 </Tabs>
             </Box>

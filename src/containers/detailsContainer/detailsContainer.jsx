@@ -1,14 +1,15 @@
 import React from 'react'
-import { useParams } from 'react-router-dom';
-import { getProduct } from '../../dataProducts/data';
+import { useParams } from 'react-router-dom'
+import { getProductDetail } from '../../dataProducts/data'
+import DetailsComponents from '../../components/detailsComponent/detailsComponent'
 
-function DetailsComponents() {
+function DetailsContainer() {
   const [data, setData] = React.useState()
   const { id } = useParams();
 
   React.useEffect(() => {
-    getProduct(id)
-      .then((res) => res.json())
+    getProductDetail(id)
+      .then((res) => res.json()) 
       .then((res) => setData(res))
   }, [id])
   console.log(data)
@@ -21,4 +22,4 @@ function DetailsComponents() {
 }
 
 
-export default DetailsComponents;
+export default DetailsContainer;

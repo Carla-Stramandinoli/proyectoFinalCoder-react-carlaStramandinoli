@@ -7,14 +7,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
 
-function CardsComponents({ name, imageURL, description, quantity, price }) {
+function CardsComponents({ data }) {
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 200 }}>
             <CardMedia
                 component="img"
-                alt={name}
+                alt={data.title}
                 height="140"
-                image={imageURL}
+                image={data.image}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
@@ -23,13 +23,7 @@ function CardsComponents({ name, imageURL, description, quantity, price }) {
                     </Link>
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {description || ''}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Precio: ${price}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Cantidad por kg:{quantity}
+                    Precio: ${data.price}
                 </Typography>
             </CardContent>
             <CardActions>

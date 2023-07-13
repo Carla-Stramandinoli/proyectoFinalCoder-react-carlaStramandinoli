@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { getProductDetail } from '../../dataProducts/data'
 import DetailsComponents from '../../components/detailsComponent/detailsComponent'
 
-function DetailsContainer({ image, title, price }) {
+function DetailsContainer() {
   const [data, setData] = React.useState()
   const { id } = useParams();
 
@@ -13,21 +13,19 @@ function DetailsContainer({ image, title, price }) {
         let prod = {
           id: res.data.id,
           title: res.data.title,
-          image: res.data.thumbnail,
-          price: res.data.price
+          imageURL: res.data.thumbnail,
+          price: res.data.price,
+          stock: res.data.available_quantity
         }
-        setData(prod)
+        setData(prod);
       })
   }, [id])
-  console.log(data);
-
   return (
     <div style={detailsStyle}>
       <DetailsComponents data={data} />
     </div>
   )
 }
-
 
 export default DetailsContainer;
 

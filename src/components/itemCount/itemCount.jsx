@@ -1,7 +1,8 @@
 import { Button } from '@mui/base';
+import { Stack } from '@mui/material';
 import React from 'react'
 
-function ItemCount({ stock }) {
+function ItemCount({ stock, data }) {
   const [counter, setCounter] = React.useState(1);
 
   const handleMinus = () => {
@@ -14,15 +15,19 @@ function ItemCount({ stock }) {
     }
   }
 
+  const handleAddCart = () => {
+    console.log({...data, counter})
+    setCounter(1);
+  }
+
   return (
     <div>
-      <div>
+      <Stack spacing={2} direction="row" justifyContent="center">
         <button onClick={handleMinus}>-</button>
         <p>{counter}</p>
         <button onClick={handdleAdd}>+</button>
-
-      </div>
-      <Button size="small">Agregar al carrito</Button>
+      </Stack>
+      <Button onClick={handleAddCart} size="small">Agregar al carrito</Button>
     </div>
   )
 }

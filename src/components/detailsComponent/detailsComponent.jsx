@@ -1,15 +1,17 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import { Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import React from 'react'
 import { Link } from 'react-router-dom';
+import ItemCount from '../itemCount/itemCount';
 
 function DetailsComponent({ data }) {
+  
   return (
-    <Card sx={{ maxWidth: 350}} >
+    <Card sx={{ maxWidth: 350 }} >
       <CardMedia
         component="img"
         alt={data?.title}
         height="340"
-        image={data?.image}
+        image={data?.imageURL}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -22,7 +24,7 @@ function DetailsComponent({ data }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Agregar al carrito</Button>
+        <ItemCount stock={data?.stock || 0}/>
       </CardActions>
     </Card>
   )

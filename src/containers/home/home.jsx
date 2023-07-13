@@ -46,7 +46,9 @@ function Home() {
                 id: arrayProds[i].id, 
                 title: arrayProds[i].title,
                 price: arrayProds[i].price,
-                image: arrayProds[i].thumbnail,
+                imageURL: arrayProds[i].thumbnail,
+                stock: arrayProds[i].available_quantity
+
               };
               arrayVacio.push(record);
           }

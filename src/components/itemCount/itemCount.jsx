@@ -1,9 +1,12 @@
 import { Button } from '@mui/base';
 import { Stack } from '@mui/material';
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from '../../context/cartContext';
 
 function ItemCount({ stock, data }) {
   const [counter, setCounter] = React.useState(1);
+  const {carrito, setCarrito } = useContext(CartContext);
+
 
   const handleMinus = () => {
     counter > 1 && setCounter(counter - 1);
@@ -16,7 +19,14 @@ function ItemCount({ stock, data }) {
   }
 
   const handleAddCart = () => {
-    console.log({...data, counter})
+    const itemAgregado = {...data, counter};
+    if (carrito.find((prod) => prod.id === itemAgregado.id)){
+      console.log("esta en el carrito")
+    } else {   
+      setCarrito([...carrito, itemAgregado]);
+      console.log("no esta en el carrito")
+
+    }
     setCounter(1);
   }
 

@@ -3,7 +3,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import  { IconButton}  from '@mui/material'
 
 
-function cartWidget({ productos }) {
+function CartWidget({ productos }) {
   return (
     <IconButton style={{ backgroundColor: 'inherit' }}>
       <ShoppingCartIcon /> {productos}
@@ -11,4 +11,4 @@ function cartWidget({ productos }) {
   )
 }
 
-export default cartWidget;
+export default CartWidget;

@@ -26,3 +26,4 @@ function ProdContainer({ current, products }) {
 }
 
 export default ProdContainer;
+

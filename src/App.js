@@ -4,26 +4,24 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import NavBar from '../src/components/navBar/navBar'
 import Home from './containers/home/home'
 import DetailsContainer from './containers/detailsContainer/detailsContainer.jsx'
-import { CartContext } from './context/cartContext'
+import { CartProvider } from './context/cartContext'
+import Cart from './components/cartComponent/cart'
 
 function App() {
-  const [carrito, setCarrito] = React.useState([]);
-  
-
 
   return (
     <div>
-      <CartContext.Provider value={{carrito , setCarrito}}>
+      <CartProvider>
       <BrowserRouter>
         <NavBar />
         <Routes>
           <Route path={'/'} element={<Home />} />
           <Route path={'/items/:itemId'} element={<Home />} />
           <Route path={'/details/:id'} element={<DetailsContainer />} />
-          <Route path={'/cart'} element={<p>Aca va la vista cart</p>} />
+          <Route path={'/cart'} element={<Cart />} />
         </Routes>
       </BrowserRouter>
-      </CartContext.Provider> 
+      </CartProvider> 
     </div>
   )
 }

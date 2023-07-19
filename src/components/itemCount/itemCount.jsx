@@ -5,8 +5,8 @@ import { CartContext } from '../../context/cartContext';
 
 function ItemCount({ stock, data }) {
   const [counter, setCounter] = React.useState(1);
-  const {carrito, setCarrito } = useContext(CartContext);
-
+  const {carrito, AddToCart } = useContext(CartContext);
+  console.log(carrito);
 
   const handleMinus = () => {
     counter > 1 && setCounter(counter - 1);
@@ -18,18 +18,6 @@ function ItemCount({ stock, data }) {
     }
   }
 
-  const handleAddCart = () => {
-    const itemAgregado = {...data, counter};
-    if (carrito.find((prod) => prod.id === itemAgregado.id)){
-      console.log("esta en el carrito")
-    } else {   
-      setCarrito([...carrito, itemAgregado]);
-      console.log("no esta en el carrito")
-
-    }
-    setCounter(1);
-  }
-
   return (
     <div>
       <Stack spacing={2} direction="row" justifyContent="center">
@@ -37,7 +25,7 @@ function ItemCount({ stock, data }) {
         <p>{counter}</p>
         <button onClick={handdleAdd}>+</button>
       </Stack>
-      <Button onClick={handleAddCart} size="small">Agregar al carrito</Button>
+      <Button onClick={() => {AddToCart(data, counter); setCounter(1); }} size="small">Agregar al carrito</Button>
     </div>
   )
 }

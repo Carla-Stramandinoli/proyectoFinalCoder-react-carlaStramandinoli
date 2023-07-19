@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ItemCount from '../itemCount/itemCount';
 
 function DetailsComponent({ data }) {
-  
+
   return (
     <Card sx={{ maxWidth: 350 }} >
       <CardMedia

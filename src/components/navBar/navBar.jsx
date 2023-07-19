@@ -6,9 +6,8 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Modal from '@mui/material/Modal';
-import CartWidget from "./cartWidget";
 import { Link } from "react-router-dom";
-
+import CartWidget from "../cartComponent/cartWidget"
 function ResponsiveAppBar() {
 
     const [open, setOpen] = React.useState(false);

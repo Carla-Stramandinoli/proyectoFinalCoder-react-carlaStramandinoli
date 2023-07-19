@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ItemCount from '../itemCount/itemCount';
 
 function DetailsComponent({ data }) {
-  
+
   return (
     <Card sx={{ maxWidth: 350 }} >
       <CardMedia
@@ -24,7 +24,7 @@ function DetailsComponent({ data }) {
         </Typography>
       </CardContent>
       <CardActions>
-        <ItemCount stock={data?.stock || 0}/>
+        <ItemCount stock={data?.stock || 0} data={data} />
       </CardActions>
     </Card>
   )

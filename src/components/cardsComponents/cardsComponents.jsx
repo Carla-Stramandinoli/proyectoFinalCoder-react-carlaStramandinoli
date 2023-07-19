@@ -25,7 +25,7 @@ function CardsComponents({ data }) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <ItemCount stock={stock} />
+                <ItemCount stock={stock} data={data}/>
             </CardActions>
         </Card>
     )

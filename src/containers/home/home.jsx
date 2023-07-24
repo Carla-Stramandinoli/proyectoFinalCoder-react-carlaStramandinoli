@@ -2,9 +2,7 @@ import React from 'react'
 import ProdContainer from '../prodContainer/prodContainer'
 import { useNavigate, useParams } from 'react-router-dom';
 import ProductListComponent from '../../components/productListComponent/productListComponent';
-import { collection, doc, getDocs, getFirestore, query, where } from 'firebase/firestore';
-import { db } from '../../firebase/config';
-
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 
 const TOYS = 'toys';
 const FEEDERS = 'feeders';
@@ -33,13 +31,13 @@ function Home() {
     if (itemId === 'all') {
       getDocs(getCollection)
         .then(resp => {
-          setItems(resp.docs.map(el => ({ id: el.id, ...el.data() })))
+          setItems(resp.docs.map(element => ({ id: element.id, ...element.data()})))
         })
     } else if (categoryProd.some(categories => categories.id === itemId)) {
       const q = query(getCollection, where("itemId", "==", itemId))
       getDocs(q)
         .then(resp => {
-          setItems(resp.docs.map(el => ({ id: el.id, ...el.data() })))
+          setItems(resp.docs.map(element => ({ id: element.id, ...element.data()})))
         })
     }
   }, [itemId])

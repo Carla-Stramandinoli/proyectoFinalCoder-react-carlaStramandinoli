@@ -1,8 +1,9 @@
 import React, { useContext } from 'react'
 import { CartContext } from '../../context/cartContext';
+import UserComponent from '../userComponent/userComponent';
 
 function Cart() {
-    const { carrito, allPrice, emptyCart } = useContext(CartContext);
+    const { carrito, allPrice, emptyCart, sendNewOrder, lastOrder } = useContext(CartContext);
 
     const handleClear = () => {
         emptyCart();
@@ -30,9 +31,7 @@ function Cart() {
                 </> :
                 <h2>El carrito esta vacio</h2>
             }
-
-
-
+            <UserComponent carrito={carrito} sendNewOrder={sendNewOrder} lastOrder={lastOrder}/>
         </div>
     )
 }

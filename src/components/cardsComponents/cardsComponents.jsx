@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import ItemCount from '../itemCount/itemCount';
 
 function CardsComponents({ data }) {
-    const {id, title, imageURL, stock, price} = data
+    const { id, title, imageURL, stock, price } = data
 
     return (
         <Card sx={{ maxWidth: 200 }}>
@@ -23,9 +23,12 @@ function CardsComponents({ data }) {
                 <Typography variant="body2" color="text.secondary">
                     Precio: ${price}
                 </Typography>
+                <Typography variant="body2" color="text.secondary">
+                    Queda {data?.stock} en stock.
+                </Typography>
             </CardContent>
             <CardActions>
-                <ItemCount stock={stock} data={data}/>
+                <ItemCount stock={stock} data={data} />
             </CardActions>
         </Card>
     )

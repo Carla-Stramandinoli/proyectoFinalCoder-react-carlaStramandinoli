@@ -1,11 +1,35 @@
+import { addDoc, collection, doc, getFirestore, updateDoc } from 'firebase/firestore';
 import React from 'react'
 import { createContext } from "react"
-
+import Swal from 'sweetalert2';
 
 export const CartContext = createContext();
 
 export const CartProvider = ({children}) => {
     const [carrito, setCarrito] = React.useState([]);
+    const [orderId, setOrderId] = React.useState('');
+
+
+    const sendNewOrder = (order) =>{
+      const db = getFirestore();
+      const orders = collection(db, 'orders');
+
+      addDoc(orders, order)
+      .then((resp) => {
+        setOrderId(resp.id)
+        setCarrito([]);
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Tu compra fue enviada con exito!',
+          showConfirmButton: false,
+          timer: 1500
+        })
+
+        const getDoc = doc(db, "orders", resp.id);
+        updateDoc(getDoc, {orderId: resp.id})
+      })
+    }
   
     const AddToCart = (data, counter) => {
       const itemAgregado = {...data, counter};
@@ -35,7 +59,7 @@ export const CartProvider = ({children}) => {
     }
 
     return( 
-    <CartContext.Provider value={{ carrito , AddToCart, cartQuantity, allPrice, emptyCart }}>
+    <CartContext.Provider value={{ carrito , AddToCart, cartQuantity, allPrice, emptyCart, sendNewOrder, lastOrder: orderId }}>
         {children}
     </CartContext.Provider>
     )

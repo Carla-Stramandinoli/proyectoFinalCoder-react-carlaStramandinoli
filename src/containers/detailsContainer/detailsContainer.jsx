@@ -4,6 +4,7 @@ import DetailsComponents from '../../components/detailsComponent/detailsComponen
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../firebase/config';
 
+// agregar btn para volver a la lista
 
 function DetailsContainer() {
   const [data, setData] = React.useState()

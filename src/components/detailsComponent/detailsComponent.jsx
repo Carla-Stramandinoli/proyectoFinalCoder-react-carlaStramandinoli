@@ -22,6 +22,9 @@ function DetailsComponent({ data }) {
         <Typography variant="body2" color="text.secondary">
           Precio: ${data?.price}
         </Typography>
+        <Typography color="text.danger">
+          Queda {data?.stock} en stock.
+        </Typography>
       </CardContent>
       <CardActions>
         <ItemCount stock={data?.stock || 0} data={data} />

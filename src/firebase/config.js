@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCiVnpeiB-88Ut7x_XA_JQiN8pKcyxiAgw",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "",
   authDomain: "ecomerce-coder-69571.firebaseapp.com",
   projectId: "ecomerce-coder-69571",
   storageBucket: "ecomerce-coder-69571.appspot.com",

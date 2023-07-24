@@ -1,11 +1,11 @@
-import { Button } from '@mui/base';
-import { Stack } from '@mui/material';
+import Button from '@mui/material/Button';
+import { createTheme, Stack, ThemeProvider, Typography } from '@mui/material';
 import React, { useContext } from 'react'
 import { CartContext } from '../../context/cartContext';
 
 function ItemCount({ stock, data }) {
   const [counter, setCounter] = React.useState(1);
-  const {carrito, AddToCart } = useContext(CartContext);
+  const { carrito, AddToCart } = useContext(CartContext);
   console.log(carrito);
 
   const handleMinus = () => {
@@ -20,14 +20,36 @@ function ItemCount({ stock, data }) {
 
   return (
     <div>
-      <Stack spacing={2} direction="row" justifyContent="center">
-        <button onClick={handleMinus}>-</button>
-        <p>{counter}</p>
-        <button onClick={handdleAdd}>+</button>
-      </Stack>
-      <Button onClick={() => {AddToCart(data, counter); setCounter(1); }} size="small">Agregar al carrito</Button>
+      <ThemeProvider theme={styleButtonGroup}>
+
+        <Stack spacing={1} p={1} direction="row" justifyContent="center">
+          <Button size="small" variant="contained" onClick={handleMinus}>-</Button>
+          <Typography>{counter}</Typography>
+          <Button size="small" variant="contained" onClick={handdleAdd}>+</Button>
+        </Stack>
+      </ThemeProvider>
+      <ThemeProvider theme={styleButtonAdd}>
+        <Button onClick={() => { AddToCart(data, counter); setCounter(1); }} size="small" variant="contained" >Agregar al carrito</Button>
+      </ThemeProvider>
+
     </div>
   )
 }
 
 export default ItemCount;
+
+const styleButtonGroup = createTheme({
+  palette: {
+    primary: {
+      main: '#9FA4C4',
+    },
+  },
+});
+
+const styleButtonAdd = createTheme({
+  palette: {
+    primary: {
+      main: '#9E768F',
+    },
+  },
+});

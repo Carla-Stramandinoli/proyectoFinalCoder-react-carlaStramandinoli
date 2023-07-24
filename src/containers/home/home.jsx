@@ -20,7 +20,7 @@ function Home() {
 
   React.useEffect(() => {
     if (!categoryProd.some(prod => prod.id === itemId)) {
-      navigate('/')
+      navigate('/items/all')
     }
   }, [itemId, navigate])
 

@@ -16,7 +16,7 @@ function CardsComponents({ data }) {
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    <Link to={'/details/' + id}>
+                    <Link to={'/details/' + id} style={{ textDecoration: 'none', color:'black' }}>
                         {title}
                     </Link>
                 </Typography>
@@ -24,7 +24,15 @@ function CardsComponents({ data }) {
                     Precio: ${price}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Queda {data?.stock} en stock.
+                    {
+                        data?.stock > 1 ?
+                            <>
+                                Quedan {data?.stock} en stock.
+                            </> :
+                            <>
+                                Queda {data?.stock} en stock.
+                            </>
+                    }
                 </Typography>
             </CardContent>
             <CardActions>

@@ -14,17 +14,23 @@ function DetailsComponent({ data }) {
         image={data?.imageURL}
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          <Link to={'/details/' + data?.id}>
-            {data?.title}
-          </Link>
+        <Typography gutterBottom variant="h5" component="div" style={{ textDecoration: 'none', color: 'black' }}>
+          {data?.title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Precio: ${data?.price}
-        </Typography>
-        <Typography color="text.danger">
-          Queda {data?.stock} en stock.
-        </Typography>
+          <Typography variant="body2" color="black">
+            Precio: ${data?.price}
+          </Typography>
+          <Typography>
+            {
+              data?.stock > 1 ?
+                <>
+                  Quedan {data?.stock} en stock.
+                </> :
+                <>
+                  Queda {data?.stock} en stock.
+                </>
+            }
+          </Typography>
       </CardContent>
       <CardActions>
         <ItemCount stock={data?.stock || 0} data={data} />

@@ -4,20 +4,6 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// import { initializeApp } from "firebase/app";
-
-// const firebaseConfig = {
-//   apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "",
-//   authDomain: "ecomerce-coder-69571.firebaseapp.com",
-//   projectId: "ecomerce-coder-69571",
-//   storageBucket: "ecomerce-coder-69571.appspot.com",
-//   messagingSenderId: "540559076617",
-//   appId: "1:540559076617:web:f2aef25cc84539de7537d8"
-// };
-
-// // Initialize Firebase
-// initializeApp(firebaseConfig);
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

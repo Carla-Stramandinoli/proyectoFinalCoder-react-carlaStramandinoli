@@ -1,25 +1,24 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { getProductDetail } from '../../dataProducts/data'
 import DetailsComponents from '../../components/detailsComponent/detailsComponent'
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../../firebase/config';
+
 
 function DetailsContainer() {
   const [data, setData] = React.useState()
   const { id } = useParams();
 
   React.useEffect(() => {
-    getProductDetail(id)
-      .then((res) => {
-        let prod = {
-          id: res.data.id,
-          title: res.data.title,
-          imageURL: res.data.thumbnail,
-          price: res.data.price,
-          stock: res.data.available_quantity
-        }
-        setData(prod);
-      })
+    const docRef = doc(db, "productos", id);
+    getDoc(docRef)
+    .then((resp) => {
+      setData(
+      {...resp.data(), id: resp.id}
+      );
+    })
   }, [id])
+
   return (
     <div style={detailsStyle}>
       <DetailsComponents data={data} />

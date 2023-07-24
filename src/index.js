@@ -4,20 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-// import { initializeApp } from "firebase/app";
+import { initializeApp } from "firebase/app";
 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyBaVde3o4-4uleEJ7ioFLrWdIPohZi8iu0",
-//   authDomain: "coder-comerce.firebaseapp.com",
-//   projectId: "coder-comerce",
-//   storageBucket: "coder-comerce.appspot.com",
-//   messagingSenderId: "667676078014",
-//   appId: "1:667676078014:web:3fdfd41063acfa476413ef",
-//   measurementId: "G-G94JH6DM4G"
-// };
+const firebaseConfig = {
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY || "",
+  authDomain: "ecomerce-coder-69571.firebaseapp.com",
+  projectId: "ecomerce-coder-69571",
+  storageBucket: "ecomerce-coder-69571.appspot.com",
+  messagingSenderId: "540559076617",
+  appId: "1:540559076617:web:f2aef25cc84539de7537d8"
+};
 
-// // Initialize Firebase
-// initializeApp(firebaseConfig);
+// Initialize Firebase
+initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

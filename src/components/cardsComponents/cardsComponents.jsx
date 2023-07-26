@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
+import { Box, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import ItemCount from '../itemCount/itemCount';
 
@@ -7,7 +7,7 @@ function CardsComponents({ data }) {
     const { id, title, imageURL, stock, price } = data
 
     return (
-        <Card sx={{ maxWidth: 220 }}>
+        <Card sx={{ maxWidth: 270 }}>
             <CardMedia
                 component="img"
                 alt={title}
@@ -15,12 +15,13 @@ function CardsComponents({ data }) {
                 image={imageURL}
             />
             <CardContent>
-                <Typography style={titleStyle} variant="p" component="div">
-                    <Link to={'/details/' + id} style={{ textDecoration: 'none', color: 'black' }}>
+                <Typography variant="p" component="div">
+                    <Link to={'/details/' + id} style={{ textDecoration: 'none', color: '#734E65' }}>
                         {title}
                     </Link>
                 </Typography>
-                    <Typography style={componentStyle}  variant="body2" color="text.secondary">
+                <Box p={1}>
+                    <Typography style={componentStyle} variant="body2" color="text.secondary">
                         Precio: ${price}
                     </Typography>
                     <Typography style={componentStyle} variant="body2" color="text.secondary">
@@ -34,6 +35,7 @@ function CardsComponents({ data }) {
                                 </>
                         }
                     </Typography>
+                </Box>
             </CardContent>
             <CardActions style={componentStyle}>
                 <ItemCount stock={stock} data={data} />
@@ -48,11 +50,4 @@ const componentStyle = {
     display: 'flex',
     justifyContent: 'center',
     alignContent: 'center',
-}
-
-const titleStyle = {
-    width: "50ch",
-    overflow: "hidden",
-    whiteSpace: "nowrap",
-    textOverflow: "ellipsis",
 }

@@ -24,7 +24,7 @@ function ItemCount({ stock, data }) {
 
         <Stack spacing={1} p={1} direction="row" justifyContent="center">
           <Button size="small" variant="contained" onClick={handleMinus}>-</Button>
-          <Typography>{counter}</Typography>
+          <Typography variant="h6">{counter}</Typography>
           <Button size="small" variant="contained" onClick={handdleAdd}>+</Button>
         </Stack>
       </ThemeProvider>

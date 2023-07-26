@@ -7,35 +7,35 @@ function CardsComponents({ data }) {
     const { id, title, imageURL, stock, price } = data
 
     return (
-        <Card sx={{ maxWidth: 200 }}>
+        <Card sx={{ maxWidth: 220 }}>
             <CardMedia
                 component="img"
                 alt={title}
-                height="140"
+                height="160"
                 image={imageURL}
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    <Link to={'/details/' + id} style={{ textDecoration: 'none', color:'black' }}>
+                <Typography style={titleStyle} variant="p" component="div">
+                    <Link to={'/details/' + id} style={{ textDecoration: 'none', color: 'black' }}>
                         {title}
                     </Link>
                 </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    Precio: ${price}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {
-                        data?.stock > 1 ?
-                            <>
-                                Quedan {data?.stock} en stock.
-                            </> :
-                            <>
-                                Queda {data?.stock} en stock.
-                            </>
-                    }
-                </Typography>
+                    <Typography style={componentStyle}  variant="body2" color="text.secondary">
+                        Precio: ${price}
+                    </Typography>
+                    <Typography style={componentStyle} variant="body2" color="text.secondary">
+                        {
+                            data?.stock > 1 ?
+                                <>
+                                    Quedan {data?.stock} en stock.
+                                </> :
+                                <>
+                                    Queda {data?.stock} en stock.
+                                </>
+                        }
+                    </Typography>
             </CardContent>
-            <CardActions>
+            <CardActions style={componentStyle}>
                 <ItemCount stock={stock} data={data} />
             </CardActions>
         </Card>
@@ -43,3 +43,16 @@ function CardsComponents({ data }) {
 }
 
 export default CardsComponents;
+
+const componentStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignContent: 'center',
+}
+
+const titleStyle = {
+    width: "50ch",
+    overflow: "hidden",
+    whiteSpace: "nowrap",
+    textOverflow: "ellipsis",
+}

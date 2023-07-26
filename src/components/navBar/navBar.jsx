@@ -15,7 +15,7 @@ function ResponsiveAppBar() {
     const handleClose = () => setOpen(false);
 
     return (
-        <AppBar position="static" sx={{backgroundColor: '#456990'}}>
+        <AppBar position="static" sx={{backgroundColor: '#9E768F'}}>
             <Container maxWidth=" xl">
                 <Toolbar disableGutters>
                     <Typography

@@ -1,64 +1,50 @@
 import React from 'react'
 import ProdContainer from '../prodContainer/prodContainer'
 import { useNavigate, useParams } from 'react-router-dom';
-import { getProducts } from '../../dataProducts/data';
 import ProductListComponent from '../../components/productListComponent/productListComponent';
+import { collection, getDocs, getFirestore, query, where } from 'firebase/firestore';
 
 const TOYS = 'toys';
 const FEEDERS = 'feeders';
 const FOOD = 'alimentomascotas';
-const categoryProd = [{ id: 'all', title: 'Productos' }, { id: FOOD, title: 'Alimentos' }, { id: FEEDERS, title: 'Comederos'  } ,  { id: TOYS, title: 'Juegos para mascotas'  } ]
+const categoryProd = [{ id: 'all', title: 'Productos' }, { id: FOOD, title: 'Alimentos' }, { id: FEEDERS, title: 'Comederos' }, { id: TOYS, title: 'Juegos para mascotas' }]
 
-function searchCategory(id) {
-  switch (id) {
-    case FOOD:
-      return 'alimentomascotas';
-    case FEEDERS:
-      return 'comederosmascotas';
-    case TOYS:
-      return 'juegosmascotas';
-    default: 
-    return `${FOOD} + ${FEEDERS} + ${TOYS}`;
-  }
-
-}
 
 function Home() {
   const [items, setItems] = React.useState([]);
 
   const { itemId } = useParams();
   const navigate = useNavigate();
-  
+
+  const current = categoryProd.some(cat => cat.id === itemId) ? itemId : 'all';
 
   React.useEffect(() => {
     if (!categoryProd.some(prod => prod.id === itemId)) {
-      navigate('/')
+      navigate('/items/all')
     }
   }, [itemId, navigate])
 
   React.useEffect(() => {
-    getProducts(searchCategory(itemId)) 
-      .then(resp => {
-          let arrayVacio = [];
-          let arrayProds = resp.data.results;
-          for (let i = 0; i < arrayProds.length; i++){
-              let record = {
-                id: arrayProds[i].id, 
-                title: arrayProds[i].title,
-                price: arrayProds[i].price,
-                imageURL: arrayProds[i].thumbnail,
-                stock: arrayProds[i].available_quantity
+    const db = getFirestore();
+    const getCollection = collection(db, "productos");
 
-              };
-              arrayVacio.push(record);
-          }
-          setItems(arrayVacio)
-      })
-    },[itemId])
-    
+    if (itemId === 'all') {
+      getDocs(getCollection)
+        .then(resp => {
+          setItems(resp.docs.map(element => ({ id: element.id, ...element.data()})))
+        })
+    } else if (categoryProd.some(categories => categories.id === itemId)) {
+      const q = query(getCollection, where("itemId", "==", itemId))
+      getDocs(q)
+        .then(resp => {
+          setItems(resp.docs.map(element => ({ id: element.id, ...element.data()})))
+        })
+    }
+  }, [itemId])
+
   return (
     <div>
-      <ProdContainer current={itemId} products={categoryProd} />
+      <ProdContainer current={current} products={categoryProd} />
       <div style={{ padding: 30 }}>
         <ProductListComponent items={items} />
       </div>

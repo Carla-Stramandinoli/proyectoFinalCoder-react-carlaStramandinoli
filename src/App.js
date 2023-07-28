@@ -5,24 +5,27 @@ import NavBar from '../src/components/navBar/navBar'
 import Home from './containers/home/home'
 import DetailsContainer from './containers/detailsContainer/detailsContainer.jsx'
 import { CartProvider } from './context/cartContext'
-import Cart from './components/cartComponent/cart'
+import Cart from './containers/cartContainer/cart'
+import AuthProvider from './auth/authProvider'
 
 function App() {
 
   return (
     <div>
       <CartProvider>
-      <BrowserRouter>
-        <NavBar />
-        <Routes>
-          <Route path={'/'} element={<Home />} />
-          <Route path={'/items/:itemId'} element={<Home />} />
-          <Route path={'/details/:id'} element={<DetailsContainer />} />
-          <Route path={'/cart'} element={<Cart />} />
-        </Routes>
-      </BrowserRouter>
-      </CartProvider> 
-    </div>
+        <AuthProvider>
+          <BrowserRouter>
+            <NavBar />
+            <Routes>
+              <Route path={'/'} element={<Home />} />
+              <Route path={'/items/:itemId'} element={<Home />} />
+              <Route path={'/details/:id'} element={<DetailsContainer />} />
+              <Route path={'/cart'} element={<Cart />} />
+            </Routes>
+          </BrowserRouter>
+        </AuthProvider>
+      </CartProvider>
+    </div >
   )
 }
 

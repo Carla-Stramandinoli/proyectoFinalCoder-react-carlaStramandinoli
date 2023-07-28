@@ -2,20 +2,24 @@ import React from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Modal from '@mui/material/Modal';
 import { Link } from "react-router-dom";
 import CartWidget from "../cartComponent/cartWidget"
+import { Button } from "@mui/base";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase/config";
+import styled from "@emotion/styled";
+
 function ResponsiveAppBar() {
 
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+
+    const handleSignOut = () => {
+        signOut(auth);
+      }
 
     return (
-        <AppBar position="static" sx={{backgroundColor: '#9E768F'}}>
+        <AppBar position="static" sx={{ backgroundColor: '#9E768F' }}>
             <Container maxWidth=" xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -29,37 +33,19 @@ function ResponsiveAppBar() {
                             fontFamily: 'monospace',
                             fontSize: 40,
                             letterSpacing: '.2rem',
-                            color: 'black',
+                            color: 'white',
                             textDecoration: 'none',
                         }} >
                         Ikki-Naguis
                     </Typography>
- 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+
+                    <Box sx={{ flexGrow: 1, justifyContent:'end', display: { xs: 'none', md: 'flex' } }}>
                         <Link to={'/cart'}>
-                        <CartWidget productos={5} />
+                            <CartWidget productos={5} />
                         </Link>
                     </Box>
-                    <Box sx={{ flexGrow: 0.1, color: 'black', fontFamily: 'monospace', fontSize: 25 }}> Ingresar como:
-                    </Box>
                     <Box>
-                        <IconButton onClick={handleOpen} sx={{ color: 'white' }}>
-                            Usuario
-                        </IconButton>
-                        <Modal
-                            open={open}
-                            onClose={handleClose}
-                            aria-labelledby="modal-modal-title"
-                            aria-describedby="modal-modal-description" >
-                            <Box>
-                                <Typography id="modal-modal-title" variant="h6" component="h2">
-                                    ACA VA UN FORMULARIO PARA INGRESAR/LOGUEARSE COMO USUARIO
-                                </Typography>
-                                <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-                                    FORMULARIO.
-                                </Typography>
-                            </Box>
-                        </Modal>
+                        <CustomButtonOut onClick={handleSignOut}>Salir</CustomButtonOut>
                     </Box>
                 </Toolbar>
             </Container>
@@ -67,3 +53,15 @@ function ResponsiveAppBar() {
     );
 }
 export default ResponsiveAppBar;
+
+const CustomButtonOut = styled(Button)({
+    backgroundColor: '#9E768F',
+    color: 'white',
+    padding: '10px 20px',
+    margin: '10px',
+    border: '2px solid white',
+    borderRadius: '4px',
+        '&:hover': {
+        backgroundColor: '#9E768F',
+    },
+});

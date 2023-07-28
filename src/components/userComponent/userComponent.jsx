@@ -1,11 +1,15 @@
-import { Button, Modal } from '@mui/material';
+import { Button, Container, FormLabel, Input, Modal, Stack, styled } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react'
+import React, { useContext, useState } from 'react'
+import { CartContext } from '../../context/cartContext';
+import ConfirmComponent from '../cartComponent/confirmComponent';
 
 const validateEmail = (email) => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
 
 
 function UserComponent({ carrito, sendNewOrder }) {
+    const { emptyCart } = useContext(CartContext);
+
     const [name, setName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
     const [email, setEmail] = React.useState('');
@@ -38,9 +42,32 @@ function UserComponent({ carrito, sendNewOrder }) {
         return (name.length >= 3) && (lastName.length >= 2) && validateEmail(email) && ((phone.length > 9) && (phone.length < 11));
     }
 
+    const [openConfirm, setOpenConfirm] = useState(false);
+
+    const handleOpenConfirm = () => {
+        setOpenConfirm(true);
+    }
+
+    // resolver porq no cierra cuando apreto cancelar
+    const handleCloseConfirm = () => {
+        setOpenConfirm(false);
+
+    }
+    const handleClear = () => {
+        emptyCart();
+    }
+
+
     return (
         <div>
-            <Button onClick={handleOpen}>Finalizar compra</Button>
+            <CustomButton sx={{ left: "80%" }} onClick={handleOpen}>Finalizar compra</CustomButton>
+            <CustomButton sx={{ right: "20%" }} onClick={handleOpenConfirm}>Vaciar carrito
+                <ConfirmComponent
+                    open={openConfirm}
+                    onClose={handleCloseConfirm}
+                    onConfirm={handleClear}
+                />
+            </CustomButton>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -48,17 +75,25 @@ function UserComponent({ carrito, sendNewOrder }) {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={styleModal}>
-                    <input type="text" placeholder="Nombre" value={name} onChange={(event) => setName(event.target.value)} />
-                    <input type="text" placeholder="Apellido" value={lastName} onChange={(event) => setLastName(event.target.value)} />
-                    <input type="text" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
-                    <input type="number" placeholder="Teléfono" value={phone} onChange={(event) => setPhone(event.target.value)} />
-                    <div>
-                        <button onClick={handleSubmit} disabled={!validateForm()}>Finalizar compra</button>
-                    </div>
-                </Box>
+                    <Container>
+                        <Stack spacing={1}>
+                            <FormLabel>Nombre:</FormLabel>
+                            <Input type="text" placeholder="Nombre" value={name} onChange={(event) => setName(event.target.value)} />
+                            <FormLabel>Apellido:</FormLabel>
+                            <Input type="text" placeholder="Apellido" value={lastName} onChange={(event) => setLastName(event.target.value)} />
+                            <FormLabel>Email:</FormLabel>
+                            <Input type="text" placeholder="pepe@gmail.com" value={email} onChange={(event) => setEmail(event.target.value)} />
+                            <FormLabel>Telefono:</FormLabel>
+                            <Input required type="number" placeholder="Teléfono, debe contener 10 caracteres" value={phone} onChange={(event) => setPhone(event.target.value)} />
+                        </Stack>
+                        <div>
+                            <CustomButtonSubmit onClick={handleSubmit} disabled={!validateForm()}>Finalizar compra</CustomButtonSubmit>
+                        </div>
+                    </Container>
 
+                </Box>
             </Modal>
-        </div>
+        </div >
     )
 }
 
@@ -70,9 +105,36 @@ const styleModal = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
+    width: 800,
+    bgcolor: '#E4D4DE',
     border: '2px solid #000',
     boxShadow: 24,
     p: 4,
 };
+
+const CustomButton = styled(Button)({
+    backgroundColor: '#9E768F',
+    color: 'white',
+    padding: '10px 20px',
+    margin: '8px',
+    border: '2px solid black',
+    borderRadius: '4px',
+    fontSize: '16px',
+    '&:hover': {
+        backgroundColor: '#6E3D5C',
+    },
+});
+
+const CustomButtonSubmit = styled(Button)({
+    backgroundColor: '#9E768F',
+    color: 'white',
+    padding: '10px 20px',
+    margin: '10px',
+    border: '2px solid black',
+    borderRadius: '4px',
+    fontSize: '12px',
+    left: '38%',
+    '&:hover': {
+        backgroundColor: '#6E3D5C',
+    },
+});

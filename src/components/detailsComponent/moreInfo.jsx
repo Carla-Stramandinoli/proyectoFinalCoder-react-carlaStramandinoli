@@ -13,7 +13,7 @@ function MoreInfo({description}) {
         <Button onClick={handleShowInfo}>Más info <InfoOutlinedIcon size="small"/></Button>
         {showText && (
           <div>
-            <p >{description}</p>
+            <p>{description}</p>
           </div>
         )}
       </Stack>

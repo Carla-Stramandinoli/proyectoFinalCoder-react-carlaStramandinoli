@@ -12,7 +12,7 @@ const categoryProd = [{ id: 'all', title: 'Productos' }, { id: FOOD, title: 'Ali
 
 function Home() {
   const [items, setItems] = React.useState([]);
-
+  const [loading, setLoading] = React.useState(false);
   const { itemId } = useParams();
   const navigate = useNavigate();
 
@@ -25,12 +25,14 @@ function Home() {
   }, [itemId, navigate])
 
   React.useEffect(() => {
+    setLoading(true);
     const db = getFirestore();
     const getCollection = collection(db, "productos");
 
     if (itemId === 'all') {
       getDocs(getCollection)
         .then(resp => {
+          setLoading(false);
           setItems(resp.docs.map(element => ({ id: element.id, ...element.data()})))
         })
     } else if (categoryProd.some(categories => categories.id === itemId)) {
@@ -38,6 +40,7 @@ function Home() {
       getDocs(q)
         .then(resp => {
           setItems(resp.docs.map(element => ({ id: element.id, ...element.data()})))
+          setLoading(false);
         })
     }
   }, [itemId])

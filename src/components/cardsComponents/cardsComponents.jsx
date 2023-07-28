@@ -14,7 +14,7 @@ function CardsComponents({ data }) {
                 height="160"
                 image={imageURL}
             />
-            <CardContent sx={{padding: '4px'}}>
+            <CardContent sx={{ padding: '4px' }}>
                 <Typography variant="p" component="div">
                     <Link to={'/details/' + id} style={{ textDecoration: 'none', color: '#734E65' }}>
                         {title}
@@ -24,10 +24,9 @@ function CardsComponents({ data }) {
                     <Typography style={componentStyle} variant="p" color="text.secondary">
                         Precio: ${price}
                     </Typography>
-
                 </Box>
             </CardContent>
-            <CardActions sx={{padding: '5px'}} style={componentStyle}>
+            <CardActions sx={{ padding: '5px' }} style={componentStyle}>
                 <ItemCount stock={stock} data={data} />
             </CardActions>
         </Card>

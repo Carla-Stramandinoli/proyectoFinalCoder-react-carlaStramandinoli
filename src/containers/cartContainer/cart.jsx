@@ -37,7 +37,7 @@ function Cart() {
                                     <TableContainer component={Paper}>
                                         <Table aria-label="simple table">
                                             <TableHead>
-                                                <TableRow>
+                                                <TableRow  sx={{backgroundColor:'#9FA4C4', color: 'white'}}>
                                                     <TableCell align="center">Nombre</TableCell>
                                                     <TableCell align="center">Precio unitario</TableCell>
                                                     <TableCell align="center">Cantidad</TableCell>

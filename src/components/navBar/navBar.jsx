@@ -9,6 +9,7 @@ import CartWidget from "../cartComponent/cartWidget"
 import { Button } from "@mui/base";
 import { signOut } from "firebase/auth";
 import { auth } from "../../firebase/config";
+import styled from "@emotion/styled";
 
 function ResponsiveAppBar() {
 
@@ -32,7 +33,7 @@ function ResponsiveAppBar() {
                             fontFamily: 'monospace',
                             fontSize: 40,
                             letterSpacing: '.2rem',
-                            color: 'black',
+                            color: 'white',
                             textDecoration: 'none',
                         }} >
                         Ikki-Naguis
@@ -43,8 +44,8 @@ function ResponsiveAppBar() {
                             <CartWidget productos={5} />
                         </Link>
                     </Box>
-                    <Box sx={{ flexGrow: 1, justifyContent:'end', display: { xs: 'none', md: 'flex' } }}>
-                        <Button onClick={handleSignOut}>Salir</Button>
+                    <Box>
+                        <CustomButtonOut onClick={handleSignOut}>Salir</CustomButtonOut>
                     </Box>
                 </Toolbar>
             </Container>
@@ -52,3 +53,15 @@ function ResponsiveAppBar() {
     );
 }
 export default ResponsiveAppBar;
+
+const CustomButtonOut = styled(Button)({
+    backgroundColor: '#9E768F',
+    color: 'white',
+    padding: '10px 20px',
+    margin: '10px',
+    border: '2px solid white',
+    borderRadius: '4px',
+        '&:hover': {
+        backgroundColor: '#9E768F',
+    },
+});

@@ -1,11 +1,15 @@
-import { Button, Modal } from '@mui/material';
+import { Button, Modal, styled } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react'
+import React, { useContext } from 'react'
+import { CartContext } from '../../context/cartContext';
+import ConfirmComponent from '../cartComponent/confirmComponent';
 
 const validateEmail = (email) => /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
 
 
 function UserComponent({ carrito, sendNewOrder }) {
+    const { emptyCart, openConfirmacion, handleAbrirConfirmacion, handleCerrarConfirmacion } = useContext(CartContext);
+
     const [name, setName] = React.useState('');
     const [lastName, setLastName] = React.useState('');
     const [email, setEmail] = React.useState('');
@@ -38,9 +42,19 @@ function UserComponent({ carrito, sendNewOrder }) {
         return (name.length >= 3) && (lastName.length >= 2) && validateEmail(email) && ((phone.length > 9) && (phone.length < 11));
     }
 
+    const handleClear = () => {
+        emptyCart();
+    }
+
+
     return (
         <div>
-            <Button onClick={handleOpen}>Finalizar compra</Button>
+            <CustomButton onClick={handleOpen}>Finalizar compra</CustomButton>
+            <CustomButtonClear onClick={handleAbrirConfirmacion}>Vaciar carrito
+                <ConfirmComponent open={openConfirmacion}
+                    onClose={handleCerrarConfirmacion}
+                    onConfirm={handleClear} />
+            </CustomButtonClear>
             <Modal
                 open={open}
                 onClose={handleClose}
@@ -53,10 +67,9 @@ function UserComponent({ carrito, sendNewOrder }) {
                     <input type="text" placeholder="Email" value={email} onChange={(event) => setEmail(event.target.value)} />
                     <input type="number" placeholder="Teléfono" value={phone} onChange={(event) => setPhone(event.target.value)} />
                     <div>
-                        <button onClick={handleSubmit} disabled={!validateForm()}>Finalizar compra</button>
+                        <Button onClick={handleSubmit} disabled={!validateForm()}>Finalizar compra</Button>
                     </div>
                 </Box>
-
             </Modal>
         </div>
     )
@@ -76,3 +89,31 @@ const styleModal = {
     boxShadow: 24,
     p: 4,
 };
+
+const CustomButton = styled(Button)({
+    backgroundColor: '#9E768F',
+    color: 'white',
+    padding: '10px 20px',
+    margin: '8px',
+    border: '2px solid black',
+    borderRadius: '4px',
+    fontSize: '16px',
+    left: '80%',
+    '&:hover': {
+        backgroundColor: '#6E3D5C',
+    },
+});
+
+const CustomButtonClear = styled(Button)({
+    backgroundColor: '#9E768F',
+    color: 'white',
+    padding: '10px 20px',
+    margin: '10px',
+    border: '2px solid black',
+    borderRadius: '4px',
+    fontSize: '16px',
+    right: '20%',
+    '&:hover': {
+        backgroundColor: '#6E3D5C',
+    },
+});

@@ -1,6 +1,5 @@
-import { Alert, Stack } from '@mui/material';
 import { addDoc, collection, doc, getFirestore, updateDoc } from 'firebase/firestore';
-import React from 'react'
+import React, { useState } from 'react'
 import { createContext } from "react"
 import Swal from 'sweetalert2';
 
@@ -55,16 +54,31 @@ export const CartProvider = ({ children }) => {
   }
   const allPrice = () => {
     let allPriceCart = carrito.reduce((acc, prod) => acc + prod.price * prod.counter, 0);
-    allPriceCart.toFixed(2);
-    return allPriceCart;
+    return allPriceCart.toFixed(2);;
   }
 
   const emptyCart = () => {
     setCarrito([]);
   }
 
+  const [openConfirmacion, setOpenConfirmacion] = useState(false);
+
+  const handleAbrirConfirmacion = () => {
+      setOpenConfirmacion(true);
+  };
+
+  const handleCerrarConfirmacion = () => {
+      setOpenConfirmacion(false);
+  };
+
+  const deleteElement = (id) => {
+      const deleteElement = carrito.filter((prod) => prod.id !== id);
+      setCarrito(deleteElement);
+      setOpenConfirmacion(false);
+  }
+
   return (
-    <CartContext.Provider value={{ carrito, AddToCart, cartQuantity, allPrice, emptyCart, sendNewOrder, lastOrder: orderId }}>
+    <CartContext.Provider value={{ carrito, AddToCart, cartQuantity, allPrice, emptyCart, sendNewOrder, lastOrder: orderId, openConfirmacion, handleAbrirConfirmacion, handleCerrarConfirmacion, deleteElement}}>
       {children}
     </CartContext.Provider>
   )

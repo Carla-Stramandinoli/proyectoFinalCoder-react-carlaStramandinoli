@@ -5,7 +5,7 @@ import NavBar from '../src/components/navBar/navBar'
 import Home from './containers/home/home'
 import DetailsContainer from './containers/detailsContainer/detailsContainer.jsx'
 import { CartProvider } from './context/cartContext'
-import Cart from './components/cartComponent/cart'
+import Cart from './containers/cartContainer/cart'
 
 function App() {
 

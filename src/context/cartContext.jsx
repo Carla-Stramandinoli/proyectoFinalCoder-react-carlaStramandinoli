@@ -1,5 +1,5 @@
 import { addDoc, collection, doc, getFirestore, updateDoc } from 'firebase/firestore';
-import React, { useState } from 'react'
+import React from 'react'
 import { createContext } from "react"
 import Swal from 'sweetalert2';
 
@@ -8,7 +8,6 @@ export const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [carrito, setCarrito] = React.useState([]);
   const [orderId, setOrderId] = React.useState('');
-
 
   const sendNewOrder = (order) => {
     const db = getFirestore();
@@ -61,24 +60,10 @@ export const CartProvider = ({ children }) => {
     setCarrito([]);
   }
 
-  const [openConfirmacion, setOpenConfirmacion] = useState(false);
-
-  const handleAbrirConfirmacion = () => {
-      setOpenConfirmacion(true);
-  };
-
-  const handleCerrarConfirmacion = () => {
-      setOpenConfirmacion(false);
-  };
-
-  const deleteElement = (id) => {
-      const deleteElement = carrito.filter((prod) => prod.id !== id);
-      setCarrito(deleteElement);
-      setOpenConfirmacion(false);
-  }
+ 
 
   return (
-    <CartContext.Provider value={{ carrito, AddToCart, cartQuantity, allPrice, emptyCart, sendNewOrder, lastOrder: orderId, openConfirmacion, handleAbrirConfirmacion, handleCerrarConfirmacion, deleteElement}}>
+    <CartContext.Provider value={{ carrito, setCarrito, AddToCart, cartQuantity, allPrice, emptyCart, sendNewOrder, lastOrder: orderId}}>
       {children}
     </CartContext.Provider>
   )

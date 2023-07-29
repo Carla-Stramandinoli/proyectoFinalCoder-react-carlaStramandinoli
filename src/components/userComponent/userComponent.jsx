@@ -63,9 +63,9 @@ function UserComponent({ carrito, sendNewOrder }) {
         <div>
             <CustomButton sx={{ left: "80%" }} onClick={handleOpen}>Finalizar compra</CustomButton>
             <Link to={'/'}>
-            <CustomButton sx={{ right: "20%" }}>Volver</CustomButton>
+             <CustomButton sx={{ right: "20%" }}>Volver al inicio</CustomButton>
             </Link>
-            <CustomButton sx={{ left: "5%" }} onClick={handleOpenConfirm}>Vaciar carrito
+            <CustomButton onClick={handleOpenConfirm}>Vaciar carrito
                 <ConfirmComponent
                     open={openConfirm}
                     onClose={handleCloseConfirm}

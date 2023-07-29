@@ -49,7 +49,7 @@ function Home() {
     <div>
       <ProdContainer current={current} products={categoryProd} />
       <div style={{ padding: 30 }}>
-        <ProductListComponent items={items} />
+        <ProductListComponent items={items} loading={loading}/>
       </div>
     </div>
   )

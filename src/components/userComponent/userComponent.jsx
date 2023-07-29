@@ -1,6 +1,7 @@
 import { Button, Container, FormLabel, Input, Modal, Stack, styled } from '@mui/material';
 import { Box } from '@mui/system';
 import React, { useContext, useState } from 'react'
+import { Link } from 'react-router-dom';
 import { CartContext } from '../../context/cartContext';
 import ConfirmComponent from '../cartComponent/confirmComponent';
 
@@ -61,7 +62,10 @@ function UserComponent({ carrito, sendNewOrder }) {
     return (
         <div>
             <CustomButton sx={{ left: "80%" }} onClick={handleOpen}>Finalizar compra</CustomButton>
-            <CustomButton sx={{ right: "20%" }} onClick={handleOpenConfirm}>Vaciar carrito
+            <Link to={'/'}>
+            <CustomButton sx={{ right: "20%" }}>Volver</CustomButton>
+            </Link>
+            <CustomButton sx={{ left: "5%" }} onClick={handleOpenConfirm}>Vaciar carrito
                 <ConfirmComponent
                     open={openConfirm}
                     onClose={handleCloseConfirm}

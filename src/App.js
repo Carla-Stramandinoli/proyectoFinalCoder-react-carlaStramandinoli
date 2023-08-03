@@ -7,6 +7,7 @@ import DetailsContainer from './containers/detailsContainer/detailsContainer.jsx
 import { CartProvider } from './context/cartContext'
 import Cart from './containers/cartContainer/cart'
 import AuthProvider from './auth/authProvider'
+import UserFormComponent from './components/userComponent/userFormComponent'
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
           <BrowserRouter>
             <NavBar />
             <Routes>
-              <Route path={'/'} element={<Home />} />
+              <Route path={'/'} element={<UserFormComponent />} />
               <Route path={'/items/:itemId'} element={<Home />} />
               <Route path={'/details/:id'} element={<DetailsContainer />} />
               <Route path={'/cart'} element={<Cart />} />

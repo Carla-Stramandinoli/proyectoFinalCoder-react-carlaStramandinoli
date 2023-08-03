@@ -53,13 +53,12 @@ export const CartProvider = ({ children }) => {
   }
   const allPrice = () => {
     let allPriceCart = carrito.reduce((acc, prod) => acc + prod.price * prod.counter, 0);
-    return allPriceCart.toFixed(2);;
+    return allPriceCart.toFixed(2);
   }
 
   const emptyCart = () => {
     setCarrito([]);
   }
-
  
 
   return (
